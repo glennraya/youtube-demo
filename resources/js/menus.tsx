@@ -56,7 +56,7 @@ const menuItems: MenuItem[] = [
     {
         label: 'Clients',
         icon: <PiUsersDuotone className="size-5" />,
-        href: '/clients'
+        href: '/clients/create'
     },
     {
         label: 'User Engagements',

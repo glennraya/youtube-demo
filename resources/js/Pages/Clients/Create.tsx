@@ -37,15 +37,15 @@ const Create = ({ auth, users }: PageProps) => {
             <Head title="Client Management" />
 
             <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth py-4">
-                <div className="grid w-1/2 gap-4 px-8 xl:grid-cols-2">
+                <div className="grid w-3/4 gap-4 px-8 xl:grid-cols-2">
                     <form
-                        className="flex flex-col gap-4 rounded-xl border border-gray-200 p-6 shadow-sm"
+                        className="flex flex-col gap-2 rounded-xl border border-gray-200 p-6 shadow-sm dark:border-gray-800 dark:bg-black"
                         onSubmit={handleSubmit}
                     >
                         <div className="mb-4">
                             <Label
                                 htmlFor="name"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-gray-700 dark:text-white"
                             >
                                 Name
                             </Label>
@@ -54,13 +54,14 @@ const Create = ({ auth, users }: PageProps) => {
                                 placeholder="Enter your name"
                                 value={name}
                                 onChange={e => setName(e.target.value)}
+                                className="dark:bg-gray-900"
                             />
                         </div>
 
                         <div className="mb-4">
                             <Label
                                 htmlFor="email"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-gray-700 dark:text-white"
                             >
                                 Email
                             </Label>
@@ -70,13 +71,14 @@ const Create = ({ auth, users }: PageProps) => {
                                 placeholder="Enter your email address"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
+                                className="dark:bg-gray-900"
                             />
                         </div>
 
                         <div className="mb-4">
                             <Label
                                 htmlFor="phone"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-gray-700 dark:text-white"
                             >
                                 Phone number
                             </Label>
@@ -86,11 +88,14 @@ const Create = ({ auth, users }: PageProps) => {
                                 placeholder="Enter your phone number"
                                 value={phone}
                                 onChange={e => setPhone(e.target.value)}
+                                className="dark:bg-gray-900"
                             />
                         </div>
 
                         <div className="mb-4 flex justify-end">
-                            <Button>Submit</Button>
+                            <Button className="dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
+                                Submit
+                            </Button>
                         </div>
                     </form>
                 </div>

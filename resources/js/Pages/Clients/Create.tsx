@@ -21,7 +21,11 @@ const Create = ({ auth, users }: PageProps) => {
                 email,
                 phone
             })
-            .then(response => {})
+            .then(response => {
+                setName('')
+                setEmail('')
+                setPhone('')
+            })
             .catch(error => {})
     }
 

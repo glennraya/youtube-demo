@@ -45,7 +45,9 @@ class ClientController extends Controller
         Mail::to($validated_data['email'])
             ->send(new ClientCreatedMail());
 
-        return response()->json(['message' => 'Data validated successfully!']);
+        return response()->json([
+            'message' => 'The new client was created!'
+        ]);
     }
 
     /**

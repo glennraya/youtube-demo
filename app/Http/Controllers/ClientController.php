@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Concerns\ClientMailNotifier;
+use App\Http\Requests\CreateClientRequest;
 use Inertia\Inertia;
 use App\Models\Client;
 use Illuminate\Http\Request;
-use App\Mail\ClientCreatedMail;
-use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
+    use ClientMailNotifier;
+
     /**
      * Display a listing of the resource.
      */
@@ -29,21 +31,13 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateClientRequest $request)
     {
-        // 1. Validate the incoming data.
-        $validated_data = $request->validate([
-            'name'  => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone' => 'required|digits_between:10,12',
-        ]);
+        // Store the client data.
+        Client::create($request->toArray());
 
-        // 2. Store the client data.
-        Client::create($validated_data);
-
-        // 3. Send a notification email
-        Mail::to($validated_data['email'])
-            ->send(new ClientCreatedMail());
+        // Send a notification email
+        $this->notifyClient($request->email);
 
         return response()->json([
             'message' => 'The new client was created!'

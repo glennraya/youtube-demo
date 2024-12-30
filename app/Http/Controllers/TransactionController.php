@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Inertia\Inertia;
 
 class TransactionController extends Controller

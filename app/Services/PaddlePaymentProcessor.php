@@ -10,6 +10,6 @@ class PaddlePaymentProcessor implements PaymentProcessor
     {
         // Hypothetical Paddle payment logic
         // e.g., using the Paddle API
-        return true; // Payment successful
+        return true;
     }
 }

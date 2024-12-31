@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Services\PaddlePaymentProcessor;
-use Illuminate\Http\Request;
 use App\Services\PaymentService;
 use App\Services\StripePaymentProcessor;
+use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
     public function charge(Request $request)
     {
         match (config('payment.payment_processor')) {
-            'stripe' => $paymentProcessor = new StripePaymentProcessor(),
-            'paddle' => $paymentProcessor = new PaddlePaymentProcessor(),
+            'stripe' => $payment_processor = new StripePaymentProcessor(),
+            'paddle' => $payment_processor = new PaddlePaymentProcessor(),
         };
 
-        $paymentService = new PaymentService($paymentProcessor);
-        $paymentSuccessful = $paymentService->process($request->amount);
+        $payment_service = new PaymentService($payment_processor);
+        $payment_successful = $payment_service->process($request->amount);
 
-        if ($paymentSuccessful) {
-            return response()->json(['message' => "Payment processed by " . config('payment.payment_processor') . "."]);
+        if ($payment_successful) {
+            return response()->json(['message' => "Payment processed by " . config('payment.payment_processor')]);
         }
 
         return response()->json(['message' => 'Payment failed.'], 500);

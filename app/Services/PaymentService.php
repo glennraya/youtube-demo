@@ -6,16 +6,19 @@ use App\Contracts\PaymentProcessor;
 
 class PaymentService
 {
-    protected $paymentProcessor;
-
-    public function __construct(PaymentProcessor $paymentProcessor)
+    protected $payment_processor;
+    public function __construct(PaymentProcessor $payment_processor)
     {
-        $this->paymentProcessor = $paymentProcessor;
+        $this->payment_processor = $payment_processor;
     }
 
-    public function process(float $amount): bool
+    /**
+     * Delegates the actual payment to whichever payment processor is passed in.
+     *
+     * @param float $amount
+     */
+    public function process(float $amount)
     {
-        // Delegates the actual payment to whichever PaymentProcessor is passed in
-        return $this->paymentProcessor->pay($amount);
+        return $this->payment_processor->pay($amount);
     }
 }

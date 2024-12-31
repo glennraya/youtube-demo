@@ -8,8 +8,8 @@ class StripePaymentProcessor implements PaymentProcessor
 {
     public function pay(float $amount)
     {
-        // Hypothetical Stripe payment logic
-        // e.g., using the Stripe API
+        // Stripe payment logic goes here...
+        // E.g. Using the Stripe API
         return true;
     }
 }

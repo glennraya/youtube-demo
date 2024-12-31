@@ -27,7 +27,10 @@ const Index = ({ auth, users }: PageProps) => {
             <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth py-4">
                 <div className="grid w-3/4 gap-4 px-8 xl:grid-cols-2">
                     <div className="flex flex-col gap-2 rounded-xl border border-gray-200 p-6 shadow-sm dark:border-gray-800 dark:bg-black">
-                        <Button onClick={() => handlePayment(100.0)}>
+                        <Button
+                            className="text-xs font-bold uppercase"
+                            onClick={() => handlePayment(100.0)}
+                        >
                             Pay
                         </Button>
                     </div>

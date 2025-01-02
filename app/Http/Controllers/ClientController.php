@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Concerns\ClientMailNotifier;
 use App\Http\Requests\CreateClientRequest;
-use Inertia\Inertia;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ClientController extends Controller
 {
@@ -40,7 +40,7 @@ class ClientController extends Controller
         $this->notifyClient($request->email);
 
         return response()->json([
-            'message' => 'The new client was created!'
+            'message' => 'The new client was created!',
         ]);
     }
 

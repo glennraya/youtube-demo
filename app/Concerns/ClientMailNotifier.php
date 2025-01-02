@@ -10,6 +10,6 @@ trait ClientMailNotifier
     public function notifyClient(string $client_email)
     {
         Mail::to($client_email)
-            ->send(new ClientCreatedMail());
+            ->send(new ClientCreatedMail);
     }
 }

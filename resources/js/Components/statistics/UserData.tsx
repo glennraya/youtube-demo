@@ -17,8 +17,9 @@ const UserData = () => {
 
     useEffect(() => {
         axios
-            .post('/show-user-data')
+            .get('/show-user-data')
             .then(response => {
+
                 setUserData(response.data)
             })
             .catch(error => {})

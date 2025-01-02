@@ -14,10 +14,10 @@ class ExternalApiService
     }
 
     /**
-     * Fetch user data from the external API.
+     * Fetch data from the external API
      */
-    public function getUserData(string $username)
+    public function getUserData()
     {
-        return $this->api_client->fetchData($username);
+        return $this->api_client->fetchData();
     }
 }

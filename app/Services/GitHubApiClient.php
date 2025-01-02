@@ -7,13 +7,17 @@ use Illuminate\Support\Facades\Http;
 
 class GitHubApiClient implements ApiClientInterface
 {
-    public function fetchData(string $resource)
+    public function fetchData()
     {
-        // Fetch data from the GitHub API...
-        $user = Http::get('https://jsonfakery.com/users/random');
+        // Fetch data from Twitter API
+        $data = Http::get('https://jsonfakery.com/users/random');
 
-        $data = $user->json();
+        $user = $data->json();
 
-        return $data['email'];
+        return [
+            'email' => $user['email'],
+            'name' => $user['first_name'] . ' ' . $user['last_name'],
+            'role' => $user['role'],
+        ];
     }
 }

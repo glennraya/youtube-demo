@@ -40,8 +40,8 @@ class UserDataController extends Controller
     {
         $fetcher = new GitHubApi();
 
-        $userData = $fetcher->fetch();
+        $user_data = $fetcher->fetch();
 
-        return response()->json($userData);
+        return response()->json($user_data);
     }
 }

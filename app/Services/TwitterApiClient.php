@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
 use App\Contracts\ApiClientInterface;
+use Illuminate\Support\Facades\Http;
 
 class TwitterApiClient implements ApiClientInterface
 {
-    public function fetchData(string $resource)
+    public function fetchData()
     {
+        // Fetch data from Twitter API
         $data = Http::get('https://jsonfakery.com/users/random');
 
         $user = $data->json();

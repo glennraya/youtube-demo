@@ -2,20 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ExternalApiService;
-use App\Services\GitHubApiClient;
-use App\Services\TwitterApiClient;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
+interface UserFetcherInterface
+{
+    public function fetch();
+}
+
+class TwitterApi implements UserFetcherInterface
+{
+    public function fetch()
+    {
+        $user = Http::get('https://jsonfakery.com/users/random');
+
+        return [
+            'email' => $user['email'],
+            'name' => $user['first_name'] . ' ' . $user['last_name'],
+            'role' => $user['role'],
+        ];
+    }
+}
+
+class GitHubApi implements UserFetcherInterface
+{
+    public function fetch()
+    {
+        $user = Http::get('https://jsonfakery.com/users/random');
+
+        return $user['first_name'] . ' ' . $user['last_name'];
+    }
+}
 
 class UserDataController extends Controller
 {
-    public function showUserData(Request $request)
+
+    public function show()
     {
-        $api_client = new TwitterApiClient;
+        $fetcher = new GitHubApi();
 
-        $external_service_api = new ExternalApiService($api_client);
-
-        $userData = $external_service_api->getUserData($request->input('username') ?: 'default-user');
+        $userData = $fetcher->fetch();
 
         return response()->json($userData);
     }

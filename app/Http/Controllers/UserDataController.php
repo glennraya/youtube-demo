@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 
-interface UserFetcherInterface
+interface UserFetcherApi
 {
     public function fetch();
 }
 
-class TwitterApi implements UserFetcherInterface
+class TwitterApi implements UserFetcherApi
 {
     public function fetch()
     {
@@ -23,12 +23,13 @@ class TwitterApi implements UserFetcherInterface
     }
 }
 
-class GitHubApi implements UserFetcherInterface
+class GitHubApi implements UserFetcherApi
 {
     public function fetch()
     {
         $user = Http::get('https://jsonfakery.com/users/random');
 
+        // Violates the LSP
         return $user['first_name'] . ' ' . $user['last_name'];
     }
 }
@@ -38,10 +39,10 @@ class UserDataController extends Controller
 
     public function show()
     {
-        $fetcher = new GitHubApi();
+        $data = new GitHubApi();
 
-        $user_data = $fetcher->fetch();
+        $user = $data->fetch();
 
-        return response()->json($user_data);
+        return response()->json($user);
     }
 }

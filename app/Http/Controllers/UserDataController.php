@@ -39,7 +39,7 @@ class UserDataController extends Controller
 
     public function show()
     {
-        $data = new GitHubApi();
+        $data = new TwitterApi();
 
         $user = $data->fetch();
 

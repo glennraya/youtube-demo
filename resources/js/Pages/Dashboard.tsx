@@ -6,8 +6,8 @@ import UserEngagement from '@/Components/statistics/UserEngagement'
 import SalesChart from '@/Components/statistics/SalesChart'
 import Applicants from '@/Components/statistics/Applicants'
 import Subscriptions from '@/Components/statistics/Subscriptions'
-import { useEffect, useState } from 'react'
 import UserData from '@/Components/statistics/UserData'
+import Users from '@/Components/statistics/Users'
 
 export default function Dashboard({ auth, users }: PageProps) {
     return (

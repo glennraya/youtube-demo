@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDataController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
@@ -21,17 +22,15 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $users = User::where('id', '!=', Auth::id())->simplePaginate(10);
-
-    return Inertia::render('Dashboard', [
-        'users' => $users,
-    ]);
+    return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/users', [UserController::class, 'fetchAllUsers']);
 
     Route::get('/show-user-data', [UserDataController::class, 'show']);
 

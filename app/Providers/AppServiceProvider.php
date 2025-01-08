@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Contracts\PaymentGatewayInterface;
+use App\Http\Controllers\PayPalPaymentGateway;
+use App\Http\Controllers\StripePaymentGateway;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            PaymentGatewayInterface::class,
+            PayPalPaymentGateway::class,
+        );
     }
 
     /**
